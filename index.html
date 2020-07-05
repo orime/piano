@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS实现钢琴效果</title>
+    <style type="text/css">
+      div,
+      ul,
+      li {
+        margin: 0;
+        padding: 0;
+      }
+      ul,
+      li {
+        list-style: none;
+        cursor: pointer;
+      }
+      div {
+        width: 1000px;
+        overflow: hidden;
+        margin: auto;
+      }
+      div ul {
+        width: 14.28%;
+        overflow: hidden;
+        float: left;
+      }
+      div ul li {
+        width: 100%;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        border: 1px solid skyblue;
+      }
+    </style>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <ul>
+        <li>A0</li>
+        <li>A1</li>
+        <li>A2</li>
+        <li>A3</li>
+        <li>A4</li>
+        <li>A5</li>
+        <li>A6</li>
+        <li>A7</li>
+      </ul>
+      <ul>
+        <li>B0</li>
+        <li>B1</li>
+        <li>B2</li>
+        <li>B3</li>
+        <li>B4</li>
+        <li>B5</li>
+        <li>B6</li>
+        <li>B7</li>
+      </ul>
+      <ul>
+        <li>C1</li>
+        <li>C2</li>
+        <li>C3</li>
+        <li>C4</li>
+        <li>C5</li>
+        <li>C6</li>
+        <li>C7</li>
+        <li>C8</li>
+      </ul>
+      <ul>
+        <li>D1</li>
+        <li>D2</li>
+        <li>D3</li>
+        <li>D4</li>
+        <li>D5</li>
+        <li>D6</li>
+        <li>D7</li>
+      </ul>
+      <ul>
+        <li>E1</li>
+        <li>E2</li>
+        <li>E3</li>
+        <li>E4</li>
+        <li>E5</li>
+        <li>E6</li>
+        <li>E7</li>
+      </ul>
+      <ul>
+        <li>F1</li>
+        <li>F2</li>
+        <li>F3</li>
+        <li>F4</li>
+        <li>F5</li>
+        <li>F6</li>
+        <li>F7</li>
+      </ul>
+      <ul>
+        <li>G1</li>
+        <li>G2</li>
+        <li>G3</li>
+        <li>G4</li>
+        <li>G5</li>
+        <li>G6</li>
+        <li>G7</li>
+      </ul>
+      <div><button id="auto">自定义触发</button></div>
+    </div>
+    //只用一个 video 的话
+    每次按下都会播放新的音频，会切断上一个的尾音，所以每个ui配了一个 video
+    <video class="vid" src="" autoplay></video>
+    <video class="vid" src="" autoplay></video>
+    <video class="vid" src="" autoplay></video>
+    <video class="vid" src="" autoplay></video>
+    <video class="vid" src="" autoplay></video>
+    <video class="vid" src="" autoplay></video>
+    <video class="vid" src="" autoplay></video>
+    <script>
+      //用jq比较方便 就用jq写了
+      $(function () {
+        //点击的时候拿到li的内容，拼接去min文件找对应名字的音频，赋给video
+        //每个事件对应一个 video 不然没尾音，感觉怪怪的
+        // console.log('this', this)
+        $("ul:eq(0) li").click(function () {
+          console.log(this, "this", this.innerText.slice(0, -1))
+          $(".vid")[0].src =
+            "min/" + this.innerText.slice(0, -1) + "/" + $(this).html() + ".mp3"
+        })
+        $("ul:eq(1) li").click(function () {
+          $(".vid")[1].src =
+            "min/" + this.innerText.slice(0, -1) + "/" + $(this).html() + ".mp3"
+        })
+        $("ul:eq(2) li").click(function () {
+          $(".vid")[2].src =
+            "min/" + this.innerText.slice(0, -1) + "/" + $(this).html() + ".mp3"
+        })
+        $("ul:eq(3) li").click(function () {
+          $(".vid")[3].src =
+            "min/" + this.innerText.slice(0, -1) + "/" + $(this).html() + ".mp3"
+        })
+        $("ul:eq(4) li").click(function () {
+          $(".vid")[4].src =
+            "min/" + this.innerText.slice(0, -1) + "/" + $(this).html() + ".mp3"
+        })
+        $("ul:eq(5) li").click(function () {
+          $(".vid")[5].src =
+            "min/" + this.innerText.slice(0, -1) + "/" + $(this).html() + ".mp3"
+        })
+        $("ul:eq(6) li").click(function () {
+          $(".vid")[6].src =
+            "min/" + this.innerText.slice(0, -1) + "/" + $(this).html() + ".mp3"
+        })
+        // 播放事件
+        function play(key) {
+          switch (key) {
+            case "0":
+              $("ul:eq(0) li:eq(0)").click()
+              break
+            case "1":
+              $("ul:eq(0) li:eq(1)").click()
+              break
+            case "2":
+              $("ul:eq(0) li:eq(2)").click()
+              break
+            case "3":
+              $("ul:eq(0) li:eq(3)").click()
+              break
+            case "4":
+              $("ul:eq(0) li:eq(4)").click()
+              break
+            case "5":
+              $("ul:eq(0) li:eq(5)").click()
+              break
+            case "6":
+              $("ul:eq(0) li:eq(6)").click()
+              break
+            case "7":
+              $("ul:eq(0) li:eq(7)").click()
+              break
+            //分割
+            case "d":
+              $("ul:eq(3) li:eq(0)").click()
+              break
+            case "f":
+              $("ul:eq(3) li:eq(1)").click()
+              break
+            case "g":
+              $("ul:eq(3) li:eq(2)").click()
+              break
+            case "h":
+              $("ul:eq(3) li:eq(3)").click()
+              break
+            case "j":
+              $("ul:eq(3) li:eq(4)").click()
+              break
+            case "k":
+              $("ul:eq(3) li:eq(5)").click()
+              break
+            case "l":
+              $("ul:eq(3) li:eq(6)").click()
+              break
+          }
+        }
+        //键盘事件
+        $(window).keypress(function (e) {
+          //获取当前的按键
+          var k = e.key
+          console.log(k)
+          //按键对应的音频
+          play(k)
+        })
+        // 自定义触发事件
+        $("#auto").click(async function () {
+          console.log("自定义乐谱开始播放")
+          // 定义延迟事件
+          function sleep(numberMillis) {
+            var now = new Date()
+            var exitTime = now.getTime() + numberMillis
+            while (true) {
+              now = new Date()
+              if (now.getTime() > exitTime) return
+            }
+          }
+
+          const str = '6 7 8 1 7 1 3 7 8 8 3 6 5 6 1'
+
+          let keys = str.split(' ')
+          for (let i = 0; i < keys.length; i++) {
+            let key = keys[i]
+            console.log(key, "自动弹出key")
+            await new Promise((resolve, reject) => {
+              setTimeout(() => {
+                play(String(key))
+                resolve()
+              }, 700)
+            }) 
+          }
+        })
+      })
+    </script>
+  </body>
+</html>
